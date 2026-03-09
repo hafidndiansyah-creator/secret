@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For Nata 💗</title>
 
 <style>
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial;
-}
-
 body{
-
+margin:0;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:linear-gradient(135deg,#ffd6e7,#f8cdda);
-
+background:linear-gradient(120deg,#ffc2d1,#ffe6f0,#ffd6e0);
+font-family:Arial;
 overflow:hidden;
-
 }
 
 /* hearts background */
@@ -43,165 +33,164 @@ pointer-events:none;
 
 .heart{
 position:absolute;
-font-size:20px;
+color:#ff6f91;
 animation:fall linear infinite;
-opacity:0.7;
 }
 
 @keyframes fall{
-
-0%{
-transform:translateY(-10vh);
+0%{transform:translateY(-10vh);opacity:0;}
+30%{opacity:1;}
+100%{transform:translateY(110vh);opacity:0;}
 }
 
-100%{
-transform:translateY(110vh);
-}
+/* envelope */
 
-}
-
-/* card */
-
-.card{
-
-position:relative;
-
-width:90%;
-max-width:340px;
-
-background:white;
-
-padding:28px;
-
-border-radius:20px;
-
-box-shadow:0 20px 40px rgba(0,0,0,0.15);
-
+.envelope{
+width:70vw;
+max-width:260px;
+height:160px;
+background:#ff6f91;
+border-radius:14px;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-weight:bold;
+cursor:pointer;
+animation:shake 1.6s infinite;
 z-index:2;
-
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+font-size:18px;
 }
 
-/* photo heart shape */
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(2deg)}
+50%{transform:rotate(-2deg)}
+75%{transform:rotate(2deg)}
+100%{transform:rotate(0)}
+}
+
+/* letter */
+
+.letter{
+position:absolute;
+width:88vw;
+max-width:340px;
+background:white;
+padding:28px;
+border-radius:18px;
+box-shadow:0 12px 30px rgba(0,0,0,0.2);
+text-align:center;
+display:none;
+z-index:3;
+animation:pop 0.5s;
+}
+
+@keyframes pop{
+0%{transform:scale(0.8);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+
+/* photo heart */
 
 .photo{
-
 position:absolute;
-
-top:-35px;
-right:-10px;
-
+top:-40px;
+right:-15px;
 width:90px;
 height:90px;
-
 }
 
 .photo img{
-
 width:100%;
 height:100%;
-
 object-fit:cover;
-
-filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));
 
 /* heart shape */
 
 clip-path:path("M45 80 C10 55 0 35 0 20 C0 5 12 0 22 0 C33 0 45 10 45 10 C45 10 57 0 68 0 C78 0 90 5 90 20 C90 35 80 55 45 80 Z");
 
-}
-
-/* title */
-
-.title{
-
-font-size:22px;
-font-weight:bold;
-color:#ff4f81;
-
-margin-bottom:10px;
-
+filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));
 }
 
 /* text */
 
+.name{
+font-size:22px;
+color:#ff4f81;
+font-weight:bold;
+margin-bottom:14px;
+}
+
 .text{
-
-font-size:14px;
+font-size:15px;
+margin-top:10px;
+line-height:1.6;
 color:#444;
-
-margin-top:8px;
-
 opacity:0;
-
 transition:0.6s;
-
 }
 
 .love{
-
-margin-top:10px;
-
 color:#ff4f81;
 font-weight:bold;
-
 }
 
 /* button */
 
 button{
-
 margin-top:18px;
-
-background:linear-gradient(135deg,#ff4f81,#ff6fa3);
-
+background:#ff4f81;
 border:none;
-
-padding:12px 20px;
-
-border-radius:12px;
-
 color:white;
-
-font-size:14px;
-
+padding:11px 20px;
+border-radius:12px;
 cursor:pointer;
-
-box-shadow:0 8px 20px rgba(255,79,129,0.4);
-
+font-size:14px;
+box-shadow:0 8px 16px rgba(255,79,129,0.3);
 }
 
 /* popup */
 
 .popup{
-
 position:fixed;
-
 bottom:-200px;
-
 left:50%;
-
 transform:translateX(-50%);
-
 background:white;
-
-padding:20px;
-
+padding:22px;
 border-radius:16px;
-
-width:80%;
-
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+width:80vw;
 max-width:320px;
-
 text-align:center;
-
-box-shadow:0 15px 30px rgba(0,0,0,0.2);
-
 transition:0.5s;
-
+z-index:4;
+font-size:15px;
 }
 
 .popup.show{
 bottom:40px;
+}
+
+/* confetti hearts */
+
+.confetti{
+position:fixed;
+font-size:22px;
+animation:explode 1s forwards;
+}
+
+@keyframes explode{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-150px) scale(1.5);
+opacity:0;
+}
 }
 
 </style>
@@ -211,55 +200,82 @@ bottom:40px;
 
 <div class="hearts" id="hearts"></div>
 
-<div class="card">
+<div class="envelope" onclick="openLetter()">
+tap me 💌
+</div>
+
+<div class="letter" id="letter">
 
 <div class="photo">
 <img src="Screenshot_20260228-184333.jpg">
 </div>
 
-<div class="title">
-HELLOOO NATAAA
-</div>
+<div class="name">hey nata</div>
 
 <p class="text">ngl meeting you was kinda random</p>
 <p class="text">but now you're literally my favorite person</p>
 <p class="text">life feels softer when you're around</p>
-<p class="text love">i love you 💗</p>
+
+<p class="text love">
+i love you 💗
+</p>
 
 <button onclick="showLove()">press this</button>
 
 </div>
 
 <div class="popup" id="popup">
-
+<p>
 just a reminder:<br>
 you're my favorite person fr 💗
-
+</p>
 </div>
 
-<audio id="music" autoplay loop>
+<audio id="music" loop>
 <source src="nothing.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* text animation */
+function openLetter(){
+
+document.querySelector(".envelope").style.display="none";
+document.getElementById("letter").style.display="block";
 
 let texts=document.querySelectorAll(".text");
 
 texts.forEach((t,i)=>{
-
 setTimeout(()=>{
 t.style.opacity=1;
-},600*i);
-
+},700*i);
 });
 
-/* popup */
+document.getElementById("music").play();
+
+}
 
 function showLove(){
 
 document.getElementById("popup").classList.add("show");
+
+/* confetti hearts */
+
+for(let i=0;i<8;i++){
+
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML="💗";
+
+c.style.left=(window.innerWidth/2 + (Math.random()*120-60))+"px";
+c.style.bottom="120px";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},1000);
+
+}
 
 }
 
@@ -268,13 +284,11 @@ document.getElementById("popup").classList.add("show");
 setInterval(()=>{
 
 let heart=document.createElement("div");
-
 heart.className="heart";
-
 heart.innerHTML="💗";
 
 heart.style.left=Math.random()*100+"vw";
-
+heart.style.fontSize=(18+Math.random()*25)+"px";
 heart.style.animationDuration=(4+Math.random()*4)+"s";
 
 document.getElementById("hearts").appendChild(heart);
@@ -283,7 +297,7 @@ setTimeout(()=>{
 heart.remove();
 },8000);
 
-},600);
+},500);
 
 </script>
 
