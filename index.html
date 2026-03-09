@@ -77,7 +77,7 @@ position:absolute;
 width:88vw;
 max-width:340px;
 background:white;
-padding:30px 26px;
+padding:28px;
 border-radius:18px;
 box-shadow:0 12px 30px rgba(0,0,0,0.2);
 text-align:center;
@@ -95,8 +95,8 @@ animation:pop 0.5s;
 
 .photo{
 position:absolute;
-top:-40px;
-right:-15px;
+top:-35px;
+right:-20px;
 }
 
 .photo img{
@@ -105,7 +105,7 @@ height:90px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid white;
-box-shadow:0 6px 14px rgba(0,0,0,0.25);
+box-shadow:0 0 15px rgba(255,79,129,0.6);
 }
 
 /* text */
@@ -114,13 +114,12 @@ box-shadow:0 6px 14px rgba(0,0,0,0.25);
 font-size:22px;
 color:#ff4f81;
 font-weight:bold;
-margin-bottom:16px;
-letter-spacing:1px;
+margin-bottom:18px;
 }
 
 .text{
 font-size:15px;
-margin-top:10px;
+margin-top:12px;
 line-height:1.6;
 color:#444;
 opacity:0;
@@ -140,11 +139,11 @@ margin-top:22px;
 background:#ff4f81;
 border:none;
 color:white;
-padding:11px 22px;
+padding:11px 20px;
 border-radius:12px;
 cursor:pointer;
 font-size:14px;
-box-shadow:0 8px 16px rgba(255,79,129,0.3);
+box-shadow:0 6px 14px rgba(255,79,129,0.35);
 }
 
 /* popup */
@@ -155,7 +154,7 @@ bottom:-200px;
 left:50%;
 transform:translateX(-50%);
 background:white;
-padding:22px;
+padding:20px;
 border-radius:16px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 width:80vw;
@@ -163,11 +162,29 @@ max-width:320px;
 text-align:center;
 transition:0.5s;
 z-index:4;
-font-size:15px;
 }
 
 .popup.show{
 bottom:40px;
+}
+
+/* emoji burst */
+
+.burst{
+position:fixed;
+font-size:24px;
+animation:burst 1s forwards;
+}
+
+@keyframes burst{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-140px) scale(1.6);
+opacity:0;
+}
 }
 
 </style>
@@ -184,16 +201,18 @@ tap me 💌
 <div class="letter" id="letter">
 
 <div class="photo">
-<img src="Screenshot_20260228-184333.jpg">
+<img src="nata.jpg">
 </div>
 
-<div class="name">HEIII NATAAA</div>
+<div class="name">hey nata</div>
 
 <p class="text">ngl meeting you was kinda random</p>
 <p class="text">but now you're literally my favorite person</p>
 <p class="text">life feels softer when you're around</p>
 
-<p class="text love">i love you 💗</p>
+<p class="text love">
+i love you 💗
+</p>
 
 <button onclick="showLove()">press this</button>
 
@@ -226,8 +245,35 @@ document.getElementById("music").play();
 
 }
 
+/* press button */
+
 function showLove(){
+
 document.getElementById("popup").classList.add("show");
+
+/* different emojis */
+
+let emojis=["✨","🎀","🌸","💌","🫶"];
+
+for(let i=0;i<8;i++){
+
+let e=document.createElement("div");
+
+e.className="burst";
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.style.left=(window.innerWidth/2 + (Math.random()*120-60))+"px";
+e.style.bottom="120px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{
+e.remove();
+},1000);
+
+}
+
 }
 
 /* hearts background */
